@@ -11,7 +11,7 @@ import 'swiper/css/effect-coverflow';
 const testimonials = [
   {
     id: 1,
-    name: "John Doe",
+    name: "BHASKAR",
     comment: "The food was absolutely incredible! Every bite was a new experience. Highly recommended to all food enthusiasts!",
     image: "/assets/user1.jpg",
     role: "Food Blogger",
@@ -27,17 +27,17 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "Mike Johnson",
+    name: "juman",
     comment: "Best dining experience we've had in years. The atmosphere, service, and food quality are unmatched!",
-    image: "/assets/user3.jpg",
+    image: "/assets/user4.jpg",
     role: "Travel Critic",
     rating: 5
   },
   {
     id: 4,
-    name: "Sarah Williams",
+    name: "JUMAN",
     comment: "A perfect blend of innovation and tradition. Every dish tells a story of culinary excellence!",
-    image: "/assets/user4.jpg",
+    image: "/assets/user3.jpg",
     role: "Food Journalist",
     rating: 5
   },

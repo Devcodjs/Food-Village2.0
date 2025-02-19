@@ -66,37 +66,39 @@ const Services = () => {
         </motion.div>
 
         {/* Desktop: 3D Carousel */}
-        <div className="hidden lg:block">
+        <div className="hidden lg:block mt-12">
           <Swiper
             effect={'coverflow'}
             grabCursor={true}
             centeredSlides={true}
             slidesPerView={'auto'}
             coverflowEffect={{
-              rotate: 10,
-              stretch: 50,
-              depth: 150,
-              modifier: 2.5,
+              rotate: 5, // Reduced rotation
+              stretch: 20, // Reduced stretch
+              depth: 100, // Reduced depth
+              modifier: 2,
             }}
             autoplay={{ delay: 3000, disableOnInteraction: false }}
             navigation={true}
             modules={[EffectCoverflow, Autoplay, Navigation]}
             className="services-swiper"
+            style={{ padding: "20px 0" }} // Add padding to Swiper container
           >
             {services.map((service) => (
               <SwiperSlide key={service.id} className="max-w-sm">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="relative bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-8 shadow-2xl border border-zinc-700 h-[500px] flex flex-col"
+                  className="relative bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-8 shadow-2xl border border-zinc-700 h-[520px] flex flex-col"
                 >
-                  <div className="absolute top-4 right-4 bg-amber-500 text-black px-3 py-1 rounded-full text-sm font-bold">
+                  <div className="absolute top-4 right-4 bg-amber-500 text-black px-3 py-1 rounded-full text-sm font-bold z-10">
                     {service.badge}
                   </div>
-                  <div className="relative h-56 mb-6 group">
+                  {/* Updated Image Container */}
+                  <div className="relative h-48 mb-6 overflow-hidden rounded-lg">
                     <img 
                       src={service.image} 
                       alt={service.title}
-                      className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/80 via-transparent to-transparent" />
                   </div>
@@ -121,11 +123,12 @@ const Services = () => {
               transition={{ duration: 0.4 }}
               className="bg-zinc-800 rounded-xl p-6 border border-zinc-700"
             >
-              <div className="relative h-48 mb-4">
+              {/* Updated Image Container */}
+              <div className="relative h-48 mb-4 overflow-hidden rounded-lg">
                 <img 
                   src={service.image} 
                   alt={service.title}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover"
                 />
               </div>
               <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
@@ -149,7 +152,7 @@ const Services = () => {
               repeatType: 'reverse',
               delay: Math.random() * 2
             }}
-            className="absolute w-1 h-1 bg-amber-400/30 rounded-full"
+            className="absolute w-1 h-1 bg-amber-400/30 rounded-full -z-10" // Added -z-10
             style={{
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,

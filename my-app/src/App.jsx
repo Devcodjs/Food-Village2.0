@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CustomSlider } from "./components/CustomSlider";
+import  CustomSlider  from "./components/CustomSlider";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero"; // Fixed case sensitivity
 import Services from "./components/Services";

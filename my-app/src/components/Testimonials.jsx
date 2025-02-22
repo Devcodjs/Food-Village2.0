@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaQuoteLeft, FaStar } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
-// import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper';
+import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -13,7 +13,7 @@ const testimonials = [
     id: 1,
     name: "BHASKAR",
     comment: "The food was absolutely incredible! Every bite was a new experience. Highly recommended to all food enthusiasts!",
-    image: "/assets/user1.jpg",
+    image: "/assets/bhaskar.jpg",
     role: "Food Blogger",
     rating: 5
   },
@@ -27,18 +27,34 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "juman",
+    name: "BIPUL SAIKIA",
     comment: "Best dining experience we've had in years. The atmosphere, service, and food quality are unmatched!",
-    image: "/assets/user4.jpg",
-    role: "Travel Critic",
+    image: "/assets/bipulS.jpg",
+    role: "Gurdient",
     rating: 5
   },
   {
     id: 4,
     name: "JUMAN",
     comment: "A perfect blend of innovation and tradition. Every dish tells a story of culinary excellence!",
-    image: "/assets/user3.jpg",
+    image: "/assets/juman.jpg",
     role: "Food Journalist",
+    rating: 5
+  },
+  {
+    id: 5,
+    name: "RANU SAIKIA",
+    comment: "excellent work!",
+    image: "/assets/ranus.jpg",
+    role: "Gurdient",
+    rating: 5
+  },
+  {
+    id: 6,
+    name: "Mike Watson",
+    comment: "excellent work!",
+    image: "/assets/user3.jpg",
+    role: "CEO of LifeLong Pvt.Ltd",
     rating: 5
   },
 ];
@@ -57,12 +73,16 @@ const Testimonials = () => {
         </motion.h2>
 
         <Swiper
-          // modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
-          effect="coverflow"
+          modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
+          effect={'coverflow'}
           grabCursor={true}
           centeredSlides={true}
           loop={true}
-          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+          }}
           coverflowEffect={{
             rotate: 5,
             stretch: 0,
@@ -74,11 +94,15 @@ const Testimonials = () => {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
           }}
-          pagination={{ clickable: true }}
+          pagination={{
+            clickable: true,
+            el: '.swiper-pagination',
+            type: 'bullets',
+          }}
           breakpoints={{
             640: { slidesPerView: 1 },
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
+            768: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 3, spaceBetween: 30 },
           }}
           className="pb-16"
         >
@@ -132,8 +156,12 @@ const Testimonials = () => {
             </SwiperSlide>
           ))}
 
-          <div className="swiper-button-next !text-blue-500 !scale-75 hover:!scale-100 transition-transform" />
-          <div className="swiper-button-prev !text-blue-500 !scale-75 hover:!scale-100 transition-transform" />
+          {/* Navigation Buttons */}
+          <div className="swiper-button-next !text-blue-500 !scale-75 hover:!scale-100 transition-transform !right-0" />
+          <div className="swiper-button-prev !text-blue-500 !scale-75 hover:!scale-100 transition-transform !left-0" />
+          
+          {/* Pagination */}
+          <div className="swiper-pagination !bottom-0" />
         </Swiper>
       </div>
 

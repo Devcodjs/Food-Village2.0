@@ -5,7 +5,6 @@ const images = [
   '/assets/bg.jpg',
   '/assets/jb.jpg',
   '/assets/js2.png',
-  
 ];
 
 const Hero = () => {
@@ -37,15 +36,50 @@ const Hero = () => {
 
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % images.length);
-    }, 5000);
+    }, 7000);
 
     return () => clearInterval(interval);
   }, []);
 
-  // Text animations variants
-  const textVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0 },
+  // Letter animation variants
+  const letterContainer = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.5,
+      }
+    }
+  };
+
+  const letterAnimation = {
+    hidden: {
+      y: -1000,
+      opacity: 0,
+      rotate: -45,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      rotate: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 150,
+        mass: 1,
+      }
+    }
+  };
+
+  // Button animation
+  const buttonAnimation = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { delay: 2.5, type: "spring", stiffness: 100 }
+    }
   };
 
   return (
@@ -80,33 +114,45 @@ const Hero = () => {
 
       <div className="relative h-full flex items-center justify-center text-center px-4">
         <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={textVariants}
-            transition={{ staggerChildren: 0.2 }}
-            className="space-y-8"
-          >
-            <motion.div variants={textVariants}>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
-                Savor the Art of
-                <br />
-                <span className="text-amber-400 bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
-                  Modern Gastronomy
-                </span>
-              </h1>
-            </motion.div>
+          <div className="space-y-8">
+            {/* Title with bouncing letters */}
+            <motion.h1
+              initial="hidden"
+              animate="visible"
+              variants={letterContainer}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight drop-shadow-2xl overflow-hidden"
+            >
+              {"FOOD VILLAGE".split('').map((char, index) => (
+                <motion.span
+                  key={index}
+                  variants={letterAnimation}
+                  className="inline-block bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent"
+                  style={{ 
+                    textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+                    transformOrigin: 'bottom center' 
+                  }}
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </motion.span>
+              ))}
+            </motion.h1>
 
-            <motion.div variants={textVariants} transition={{ delay: 0.3 }}>
-              <p className="text-lg md:text-xl text-white mb-8 max-w-2xl mx-auto font-light drop-shadow-md">
-                Where passion meets the plate - Experience Michelin-starred creativity through
-                seasonal ingredients transformed into edible masterpieces
-              </p>
-            </motion.div>
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.5, duration: 0.8 }}
+              className="text-lg md:text-xl text-white mb-8 max-w-2xl mx-auto font-light drop-shadow-md"
+            >
+              Where passion meets the plate - Experience Michelin-starred creativity through
+              seasonal ingredients transformed into edible masterpieces
+            </motion.p>
 
+            {/* Button */}
             <motion.div
-              variants={textVariants}
-              transition={{ delay: 0.5 }}
+              variants={buttonAnimation}
+              initial="hidden"
+              animate="visible"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-block"
@@ -118,9 +164,10 @@ const Hero = () => {
                 </svg>
               </button>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
 
+        {/* Navigation dots */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3">
           {images.map((_, index) => (
             <button

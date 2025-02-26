@@ -38,7 +38,7 @@ const CustomSlider = () => {
 
   const projects = [
     {
-      src: '/assets/food.jpg',
+      src: '/assets/coffe.jpg',
       alt: 'Sustainable Farming',
       title: 'Farm-to-Table Initiative',
       desc: 'Revolutionizing urban agriculture with zero-waste solutions',

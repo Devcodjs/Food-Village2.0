@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const images = [
   '/assets/bg.jpg',
+  '/assets/food.jpg',
   '/assets/jb.jpg',
-  '/assets/js2.png',
 ];
 
 const Hero = () => {
@@ -41,7 +41,6 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Letter animation variants
   const letterContainer = {
     hidden: { opacity: 1 },
     visible: {
@@ -72,7 +71,6 @@ const Hero = () => {
     }
   };
 
-  // Button animation
   const buttonAnimation = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -115,7 +113,6 @@ const Hero = () => {
       <div className="relative h-full flex items-center justify-center text-center px-4">
         <div className="max-w-7xl mx-auto px-4">
           <div className="space-y-8">
-            {/* Title with bouncing letters */}
             <motion.h1
               initial="hidden"
               animate="visible"
@@ -137,37 +134,51 @@ const Hero = () => {
               ))}
             </motion.h1>
 
-            {/* Subtitle */}
-            <motion.p
+            <motion.div 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.5, duration: 0.8 }}
-              className="text-lg md:text-xl text-white mb-8 max-w-2xl mx-auto font-light drop-shadow-md"
+              className="space-y-6 text-white max-w-3xl mx-auto"
             >
-              Where passion meets the plate - Experience Michelin-starred creativity through
-              seasonal ingredients transformed into edible masterpieces
-            </motion.p>
+              <p className="text-2xl md:text-3xl font-medium drop-shadow-md">
+                Where Celestial Inspiration Meets Earthly Delicacies
+              </p>
+              
+              <div className="space-y-4">
+                <p className="text-lg md:text-xl font-light italic opacity-90">
+                  A Michelin-Starred Voyage Through Cosmic Culinary Frontiers
+                </p>
+                <div className="flex items-center justify-center gap-4 opacity-80">
+                  <div className="w-12 h-px bg-amber-400" />
+                  <span className="text-sm tracking-widest">SINCE 2024</span>
+                  <div className="w-12 h-px bg-amber-400" />
+                </div>
+              </div>
 
-            {/* Button */}
-            <motion.div
-              variants={buttonAnimation}
-              initial="hidden"
-              animate="visible"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-block"
-            >
-              <button className="group bg-gradient-to-r from-amber-400 to-amber-500 text-black px-10 py-5 rounded-full text-xl font-bold hover:shadow-2xl transition-all duration-300 flex items-center gap-3 shadow-lg hover:gap-4">
-                <span>Book Your Culinary Journey</span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </button>
+              <p className="text-xl md:text-2xl font-semibold mt-4 drop-shadow-lg">
+                Revolutionizing Modern Gastronomy Through Stellar Innovation and Celestial Creativity
+              </p>
             </motion.div>
+
+            <div className="flex justify-center py-8">
+              <motion.div
+                variants={buttonAnimation}
+                initial="hidden"
+                animate="visible"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <button className="group bg-gradient-to-r from-amber-400 to-amber-500 text-black px-10 py-5 rounded-full text-xl font-bold hover:shadow-2xl transition-all duration-300 flex items-center gap-3 shadow-lg hover:gap-4 mx-auto">
+                  <span>Embark on Your Cosmic Gastronomic Odyssey</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </button>
+              </motion.div>
+            </div>
           </div>
         </div>
 
-        {/* Navigation dots */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3">
           {images.map((_, index) => (
             <button
@@ -191,7 +202,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Decorative elements */}
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/60 to-transparent" />
       <div className="absolute top-1/2 left-4 right-4 h-1 bg-white/5 rounded-full max-w-7xl mx-auto" />
     </section>
